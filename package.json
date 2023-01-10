@@ -1,0 +1,26 @@
+{
+  "name": "designpatterns",
+  "version": "1.0.0",
+  "description": "Design Patterns base~",
+  "main": "index.js",
+  "repository": "git+https://github.com/Caiyuzhen/DesignPatterns.git",
+  "keywords": [],
+  "author": "Caiyuzhen <caiyuzhen00@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Caiyuzhen/DesignPatterns/issues"
+  },
+  "homepage": "https://github.com/Caiyuzhen/DesignPatterns#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "react": "^18.2.0",
+    "react-dom": "npm:@hot-loader/react-dom",
+    "react-hot-loader": "^4.13.1",
+    "react-redux": "^8.0.5",
+    "typescript": "^4.9.4"
+  },
+  "scripts": {
+	"test": "echo \"Error: no test specified\" && exit 1",
+	"start": "nodemon server/index.js"
+  }
+}
