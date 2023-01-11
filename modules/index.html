@@ -6,21 +6,77 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Design Patterns</title>
 </head>
+<style>
+	.modal {
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		width: 480px;
+		height: 480px;
+		margin: -250px 0 0 -250px;
+		box-shadow: 1px 4px 12px #999;
+	}
+
+	.modal header { 
+		height: 52px;
+		background-color: #ccc;
+		color: white;
+		padding: 0 24px;
+		box-sizing: border-box;
+		font-size: 18px;
+		line-height: 52px;
+		color: black;
+	}
+
+	.modal.success header { 
+		height: 52px;
+		background-color: greenyellow;
+		color: white;
+		padding: 0 24px;
+		box-sizing: border-box;
+		font-size: 18px;
+		line-height: 52px;
+		color: black;
+	}
+
+	.modal.warning header { 
+		height: 52px;
+		background-color: orangered;
+		color: white;
+		padding: 0 24px;
+		box-sizing: border-box;
+		font-size: 18px;
+		line-height: 52px;
+		color: black;
+	}
+
+	.modal.error header { 
+		height: 52px;
+		background-color: red;
+		color: white;
+		padding: 0 24px;
+		box-sizing: border-box;
+		font-size: 18px;
+		line-height: 52px;
+		color: black;
+	}
+
+</style>
 <body>
 	<!-- 模态框 -->
 	<div class="wrapper">
-		<div class="modal">
+		<div class="modal success">
 			<header>Modal</header>
 		</div>
 		<div class="btn-group">
-			<button>成功模态框</button>
-			<button>失败模态框</button>
-			<button>警告模态框</button>
+			<button data-status="Success">成功模态框</button>
+			<button data-status="Warning">失败模态框</button>
+			<button data-status="Error">警告模态框</button>
 		</div>
 	</div>
 
 	<!-- 引入 js -->
 	<script type="module" src="http://localhost:3333/factory/index.js"></script>
-	<div id="root">app</div>
+	<!-- <div id="root"></div> -->
 </body>
 </html>
