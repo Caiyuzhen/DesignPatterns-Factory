@@ -15,6 +15,8 @@
 		height: 480px;
 		margin: -250px 0 0 -250px;
 		box-shadow: 1px 4px 12px #999;
+		border-radius: 20px;
+		overflow: hidden;
 	}
 
 	.modal header { 
@@ -41,7 +43,7 @@
 
 	.modal.warning header { 
 		height: 52px;
-		background-color: orangered;
+		background-color: rgb(255, 126, 79);
 		color: white;
 		padding: 0 24px;
 		box-sizing: border-box;
@@ -69,9 +71,9 @@
 			<header>Modal</header>
 		</div>
 		<div class="btn-group">
-			<button data-status="Success">成功模态框</button>
-			<button data-status="Warning">失败模态框</button>
-			<button data-status="Error">警告模态框</button>
+			<button data-status="success">成功模态框</button>
+			<button data-status="warning">警告模态框</button>
+			<button data-status="error">失败模态框</button>
 		</div>
 	</div>
 
