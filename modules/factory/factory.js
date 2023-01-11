@@ -1,3 +1,10 @@
+/*
+	🏭工厂模式,
+		🌟每个状态都有一个类, 通过工厂来创建实例, 通过实例来调用方法
+		🌟公共的方法提炼出来, 比如 outPut, 通过子类的实例化可以塞入更多信息, 最终统一通过工厂来实例化和返回！！
+		🌟公共的扩展方法也都提炼出来比如提炼到 Modal, 非公共的话就放到子类里边去扩展！
+*/
+
 import { ModalTypes } from "./typing.js"
 
 
@@ -49,7 +56,7 @@ class Modal {
 		// return classStr //返回类名
 	}
 
-	// the best，检查 status 是不是枚举里边的值, 工具方法一般都用静态方法
+	//【🌟🌟可以扩展出更多的方法, 给到下面的类或者工厂去调用🌟🌟】工具方法一般都用静态方法。 检查 status 是不是枚举里边的值,
 	static checkStatusExist(types, status) {
 		for (let i in types) {
 			if (types[i] === status) {
@@ -60,7 +67,15 @@ class Modal {
 		console.log('status 不存在')
 		return false
 	}
+
+	//【🌟🌟可以扩展出更多的方法🌟🌟】比如打印错误日志
+	static outPutInfo(types, info) {
+		console.log(types + ':', info)
+	}
 }
+
+
+
 
 
 
@@ -71,22 +86,41 @@ class SuccessModal extends Modal { //继承 Modal, 所以可以调用 eleClassNa
 		super(ModalTypes.SUCCESS)//⚡️把状态传递给父类 
 		this.title = '成功' + title //⚙️加工 title 属性
 	}
+
+	// 【🌟扩展一个方法】成功后跳转谷歌, 因为不是公共方法, 所以这个扩展的方法不写在上面那个 Modal 里边
+	goToHome(url) {
+		window.location.href = url //扩展, 可以传入参数
+		// window.location.href = 'https://www.google.com' //写死
+	}
 }
+
 
 class WarningModal extends Modal { //继承 Modal, 所以可以调用 eleClassName
 	constructor(title) {
 		super(ModalTypes.WARNING)//⚡️把状态传递给父类 
 		this.title = '警告' + title //⚙️加工 title 属性
 	}
+
+	outPutInfo(info) { //【🌟扩展一个方法】
+		Modal.outPutInfo('⚠️警告:' + info) //⚡️⚡️调用父类 Modal 的提示, 🔥并且加上子类自己的提示！！！
+	}
 	
 }
+
 
 class ErrorModal extends Modal { //继承 Modal, 所以可以调用 eleClassName
 	constructor(title) {
 		super(ModalTypes.ERROR)//⚡️把状态传递给父类 
-		this.title = '失败' + title //⚙️加工 title 属性
+		this.title = '错误' + title //⚙️加工 title 属性
+	}
+
+	outPutInfo(info) { //【🌟扩展一个方法】
+		Modal.outPutInfo('❌错误:' + info) //⚡️⚡️调用父类 Modal 的提示, 🔥并且加上子类自己的提示！！！
 	}
 }
+
+
+
 
 
 
@@ -127,6 +161,11 @@ class ModalFactory {
 		// 设置元素的 titles
 		dom.getElementsByTagName('header')[0].innerText = modal.title
 		dom.className = modal.eleClassName //👈设置元素的 className, 因为三个子类的实例是继承自 Modal 的, 🔥🔥所以实例化的元素也能都能够取到父类的 eleClassName 属性！！
+
+		return { //🌟返回 modal 父类的错误信息
+			outPutInfo: modal.outPutInfo, //🌟返回 modal 父类的错误信息, 让调用它的人可以自己传入 info 参数！！
+			goToHome: modal.goToHome //🌟返回 modal 父类的跳转方法, 让调用它的人可以自己传入 url 参数！！
+		}
 	}
 }
 
